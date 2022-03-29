@@ -1,5 +1,5 @@
 const mongoose = require('mongoose') ;
-const Person = require('./models/Person.model') ;
+const Person = require('./model.js')
 
 //Create and Save a Record of a Model
 const person = new Person ({
@@ -41,37 +41,4 @@ Person.create(arrayofpoeple)
 //Use model.find() to Search a persons in our Database
 Person.find()
 .then ((doc)=> console.log('all persons' , doc))
-.cath ((err)=> console.error(err) )
-
-//Using model.findOne() to Search someone in our Database
-Person.findOne({phone : 771654622})
-.then((doc)=> console.log('its' , doc.name))
-.catch((err)=> console.error(err))
-
-//Use model.find() to Search Your Database
-Person.findById({_id : ""})
-.then((doc)=> console.log(doc))
-.catch((err)=> console.error(err))
-
-// Delete One Document Using model.findByIdAndRemove
-Person.findByIdAndRemove({_id: "" })
-.then(doc=>console.log("remove",doc))
-.catch(err=>console.log(err))
-
-//MongoDB and Mongoose - Delete Many Documents with model.remove()
-Person.remove({name : 'Clai_Cle'}, function(err) {
-    if(err){
-        return err ;
-    }else{
-        console.log('Removed succes');
-    }
- });
-
- //Chain Search Query Helpers to Narrow Search Results
- Person.find({favoriteFoods:{$in:["buritos"]}})
- .limit(2)
- .select("-age")
- .sort({name:"asc"})
- .exec()
- .then(docs=>console.log(docs,"docs"))
- .catch(err=>console.log(err))
+.cath ((err)=> console.error(err) );
